@@ -62,17 +62,17 @@ const Navbar = () => {
                <MobileMenu visible={showMobileMenu} />
             </div>
             <div className='flex flex-row ml-auto gap-7 items-center'>
-               <div className='text-gray-200 hover:text-gray-300 cursor-pointer transition'>
+               <div className='text-gray-200 hover:text-gray-300 cursor-pointer transition drop-shadow-xl'>
                   <BsSearch />
                </div>
-               <div className='text-gray-200 hover:text-gray-300 cursor-pointer transition'>
+               <div className='text-gray-200 hover:text-gray-300 cursor-pointer transition drop-shadow-xl'>
                   <BsBell />
                </div>
                <div
                   onClick={toggleAccountMenu}
                   className='flex items-center gap-2 cursor-pointer relative'
                >
-                  <div className='w-6 h-6 lg:w-10 lg:h-10 rounded-md overflow-hidden'>
+                  <div className='w-6 h-6 lg:w-10 lg:h-10 rounded-md overflow-hidden drop-shadow-xl'>
                      <img src='/images/default-red.png' alt='' />
                   </div>
                   <BsChevronDown

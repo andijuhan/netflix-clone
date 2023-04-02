@@ -11,12 +11,12 @@ const MovieCard = ({ data: movie, index }: MovieCardProps) => {
    return (
       <div className='bg-zinc-900 col-span relative h-[12vw] group'>
          <img
-            className='cursor-pointer object-cover transition duration shadow-xl rounded-md group-hover:opacity-90 md:group-hover:opacity-0 delay-200 w-full h-[12vw] brightness-75'
+            className='cursor-pointer object-cover transition duration shadow-xl rounded-md group-hover:opacity-90 md:group-hover:opacity-0 w-full h-[12vw] brightness-90'
             src={movie.thumbnailUrl}
             alt={movie.title}
          />
          <div
-            className={`opacity-0 absolute top-0 transition duration-200 z-10 invisible sm:visible delay-200 w-full scale-0 group-hover:scale-110 group-hover:-translate-y-[6vw] ${
+            className={`opacity-0 absolute top-0 transition duration-200 z-10 invisible sm:visible w-full scale-0 group-hover:scale-110 group-hover:-translate-y-[6vw] ${
                index === 3
                   ? 'group-hover:-translate-x-[2vw]'
                   : 'group-hover:translate-x-[2vw]'
