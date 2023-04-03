@@ -8,7 +8,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       if (req.method === 'POST') {
          const { currentUser } = await serverAuth(req);
 
-         const movieId = req.body;
+         const { movieId } = req.body;
 
          const existingMovie = await prismadb.movie.findUnique({
             where: {
@@ -37,7 +37,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       if (req.method === 'DELETE') {
          const { currentUser } = await serverAuth(req);
 
-         const movieId = req.body;
+         const { movieId } = req.body;
 
          const existingMovie = await prismadb.movie.findUnique({
             where: {
@@ -56,9 +56,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
                email: currentUser.email || '',
             },
             data: {
-               favoriteIds: {
-                  push: updatedFavoriteId,
-               },
+               favoriteIds: updatedFavoriteId,
             },
          });
 

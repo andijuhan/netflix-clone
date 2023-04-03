@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { BsFillPlayFill } from 'react-icons/bs';
 import { BsFillBookmarkFill } from 'react-icons/bs';
+import FavoriteButton from './FavoriteButton';
 
 interface MovieCardProps {
    data: Record<string, any>;
@@ -32,9 +33,7 @@ const MovieCard = ({ data: movie, index }: MovieCardProps) => {
                   <div className='cursor-pointer w-6 h-6 lg:w-10 lg:h-10 bg-white rounded-full flex justify-center items-center transition hover:bg-neutral-300'>
                      <BsFillPlayFill size={30} />
                   </div>
-                  <div className='cursor-pointer w-6 h-6 lg:w-10 lg:h-10 bg-white rounded-full flex justify-center items-center transition hover:bg-neutral-300'>
-                     <BsFillBookmarkFill size={20} />
-                  </div>
+                  <FavoriteButton movieId={movie?.id} />
                </div>
                <p className='text-green-400 font-semibold text-lg mt-4'>
                   {movie.title}
