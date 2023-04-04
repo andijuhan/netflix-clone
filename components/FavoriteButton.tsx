@@ -7,9 +7,13 @@ import { AiOutlineCheck } from 'react-icons/ai';
 
 interface FavoriteButtonProps {
    movieId: string;
+   scale?: string;
 }
 
-const FavoriteButton = ({ movieId }: FavoriteButtonProps) => {
+const FavoriteButton = ({
+   movieId,
+   scale = 'scale-1',
+}: FavoriteButtonProps) => {
    const { mutate: mutateFoforites } = useFavorites();
    const { data: currentUser, mutate } = useCurrentUser();
 
@@ -43,7 +47,7 @@ const FavoriteButton = ({ movieId }: FavoriteButtonProps) => {
    return (
       <div
          onClick={toggleFavorites}
-         className='cursor-pointer w-6 h-6 lg:w-10 lg:h-10 border-2 text-white border-white rounded-full flex justify-center items-center transition hover:text-neutral-100 hover:border-neutral-100'
+         className={`cursor-pointer ${scale}  w-6 h-6 lg:w-10 lg:h-10 border-2 text-white border-white rounded-full flex justify-center items-center transition hover:text-neutral-100 hover:border-neutral-100`}
       >
          <Icon size={25} />
       </div>

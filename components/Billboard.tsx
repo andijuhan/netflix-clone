@@ -1,5 +1,7 @@
-import { BsFillPlayFill } from 'react-icons/bs';
+import { BiInfoCircle } from 'react-icons/bi';
+import { BiDownArrow } from 'react-icons/bi';
 import useBillboard from '../hooks/useBillboard';
+import PlayButton from './PlayButton';
 
 const Billboard = () => {
    const { data } = useBillboard();
@@ -25,11 +27,18 @@ const Billboard = () => {
                {data?.description}
             </p>
             <div className='flex items-center mt-3 md:mt-4 lg:mt-8 gap-3'>
-               <button className='bg-white animate-pulse text-white bg-opacity-40 rounded-md py-2 px-2 md:px-4 w-auto text-xs lg:text-lg font-semibold hover:bg-opacity-30 flex items-center transition'>
-                  <BsFillPlayFill className='mr-1' />
-                  Watch Now
+               <PlayButton movieId={data?.id} />
+               <button className='bg-white text-white bg-opacity-40 rounded-md py-2 px-2 md:px-4 w-auto text-xs lg:text-lg font-semibold hover:bg-opacity-30 flex items-center transition'>
+                  <BiInfoCircle className='mr-1' />
+                  More Info
                </button>
             </div>
+         </div>
+         <div className='absolute left-1/2 transform -translate-x-1/2 bottom-7'>
+            <BiDownArrow
+               className='text-white opacity-30 animate-pulse'
+               size={40}
+            />
          </div>
       </div>
    );
