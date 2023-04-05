@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { useRouter } from 'next/router';
 import useMovie from '../../hooks/useMovie';
 import { AiOutlineArrowLeft } from 'react-icons/ai';
@@ -17,7 +18,6 @@ const Watch = () => {
 
    useEffect(() => {
       setTimeout(() => {
-         setShowNav(false);
          setShowInfo(false);
       }, 10000);
 
@@ -26,25 +26,12 @@ const Watch = () => {
       }, 1000);
    }, []);
 
-   const toggleShowNav = () => {
-      if (!showNav) {
-         setShowNav(true);
-         setTimeout(() => {
-            setShowNav(false);
-            setShowInfo(false);
-         }, 10000);
-      }
-   };
-
    return (
-      <div
-         onMouseMove={toggleShowNav}
-         className='relative h-screen w-screen bg-neutral-900 lg:bg-black'
-      >
+      <div className='relative h-screen w-screen bg-neutral-900 lg:bg-black flex'>
          <nav
             className={`lg:fixed w-full p-4 z-10 ${
-               showNav ? 'opacity-100' : 'lg:opacity-0'
-            } flex items-center gap-8 bg-black bg-opacity-70 transition duration-500`}
+               showNav ? 'lg:opacity-100' : 'lg:opacity-0'
+            } flex items-center gap-8 bg-black bg-opacity-80 transition duration-500`}
          >
             <AiOutlineArrowLeft
                onClick={() => router.back()}
@@ -57,26 +44,26 @@ const Watch = () => {
             </p>
          </nav>
          <video
-            className='lg:h-full w-full'
+            className='lg:w-[85%] mx-auto'
             autoPlay
             controls
             src={data?.videoUrl}
          ></video>
          <div
             className={`absolute ${
-               showNav ? '' : 'opacity-0'
-            } hidden lg:left-[2vw] lg:top-[7vw] lg:flex lg:flex-col items-center gap-6 transition duration-500`}
+               showNav ? 'opacity-100' : 'opacity-0'
+            } hidden lg:left-[2vw] lg:top-[7vw] lg:flex lg:flex-col items-center gap-6 transition duration-500 z-40`}
          >
             <div className='flex flex-col gap-1 text-sm items-center justify-center'>
                <div
                   onClick={() => setShowInfo(!showInfo)}
-                  className='text-white border-2 cursor-pointer border-white rounded-full w-[65px] h-[65px] flex justify-center items-center'
+                  className='text-white border-2 cursor-pointer border-white rounded-full w-[65px] h-[65px] flex justify-center items-center drop-shadow-2xl'
                >
                   <BsInfoLg size={30} />
                </div>
                <p className='text-white'>Info</p>
             </div>
-            <div className='flex flex-col gap-4 text-sm items-center justify-center'>
+            <div className='flex flex-col gap-4 text-sm items-center justify-center drop-shadow-2xl'>
                <FavoriteButton
                   movieId={data?.id}
                   size='lg:w-[60px] lg:h-[60px]'
@@ -84,7 +71,7 @@ const Watch = () => {
                <p className='text-white'>My List</p>
             </div>
             <div className='flex flex-col gap-1 text-sm items-center justify-center'>
-               <div className='text-white border-2 cursor-pointer border-white rounded-full w-[58px] h-[58px] flex justify-center items-center'>
+               <div className='text-white border-2 cursor-pointer border-white rounded-full w-[58px] h-[58px] flex justify-center items-center drop-shadow-2xl'>
                   <RiShareForwardFill size={25} />
                </div>
                <p className='text-white'>Share</p>
@@ -96,17 +83,28 @@ const Watch = () => {
          <div
             className={`hidden lg:block absolute ${
                showInfo ? 'opacity-100' : 'opacity-0'
-            } h-auto w-[40%] left-[7vw] top-[7vw] bg-zinc-900 shadow-xl py-7 px-8 rounded-lg transition duration-500 ease-in-out bg-opacity-90 z-40`}
+            } h-auto w-[30%] left-[9vw] top-[7vw] bg-zinc-900 shadow-2xl rounded-lg transition duration-500 ease-in-out z-40`}
          >
             <div className='w-full relative'>
-               <AiOutlineClose
-                  onClick={() => setShowInfo(false)}
-                  className='absolute -top-4 -right-5 cursor-pointer text-white'
+               <div className='w-8 h-8 bg-black bg-opacity-80 rounded-full flex justify-center items-center absolute top-4 right-5 cursor-pointer text-white p-2'>
+                  <AiOutlineClose
+                     onClick={() => setShowInfo(false)}
+                     className=''
+                  />
+               </div>
+               <img
+                  className='w-full object-cover rounded-tl-lg rounded-tr-lg'
+                  src={data?.thumbnailUrl}
+                  alt=''
                />
-               <p className='text-green-500 text-lg'>New</p>
-               <p className='text-white text-lg'>{data?.duration}</p>
-               <p className='text-white text-lg mb-2'>{data?.genre}</p>
-               <p className='text-white text-lg'>{data?.description}</p>
+               <div className='py-5 px-4'>
+                  <p className='text-green-500 font-semibold text-xl mb-2'>
+                     {data?.title}
+                  </p>
+                  <p className='text-white text-lg'>{data?.duration}</p>
+                  <p className='text-white text-lg mb-2'>{data?.genre}</p>
+                  <p className='text-white'>{data?.description}</p>
+               </div>
             </div>
          </div>
       </div>
