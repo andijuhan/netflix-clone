@@ -1,7 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
-import { BsFillPlayFill } from 'react-icons/bs';
+import { BsFillPlayFill, BsChevronDown } from 'react-icons/bs';
 import { useRouter } from 'next/router';
 import FavoriteButton from './FavoriteButton';
+import useInfoModal from '../hooks/useInfoModal';
 
 interface MovieCardProps {
    data: Record<string, any>;
@@ -10,6 +11,7 @@ interface MovieCardProps {
 
 const MovieCard = ({ data: movie, index }: MovieCardProps) => {
    const router = useRouter();
+   const { openModal } = useInfoModal();
 
    return (
       <div className='bg-zinc-900 col-span relative h-[12vw] group'>
@@ -39,6 +41,12 @@ const MovieCard = ({ data: movie, index }: MovieCardProps) => {
                      <BsFillPlayFill size={30} />
                   </div>
                   <FavoriteButton movieId={movie?.id} />
+                  <div
+                     onClick={() => openModal(movie.id)}
+                     className='cursor-pointer ml-auto w-6 h-6 lg:w-10 lg:h-10 border-white border-2 rounded-full flex justify-center items-center transition hover:border-neutral-300'
+                  >
+                     <BsChevronDown className='text-white' />
+                  </div>
                </div>
                <p className='text-green-400 font-semibold text-lg mt-4'>
                   {movie.title}

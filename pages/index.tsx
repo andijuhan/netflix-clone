@@ -5,6 +5,8 @@ import Billboard from '../components/Billboard';
 import MovieList from '../components/MovieList';
 import useMovieList from '../hooks/useMovieList';
 import useFavorites from '../hooks/useFavorites';
+import InfoModal from '../components/InfoModal';
+import useInfoModal from '../hooks/useInfoModal';
 
 export const getServerSideProps = async (context: NextPageContext) => {
    const session = await getSession(context);
@@ -27,9 +29,11 @@ const Home = () => {
    const { data: movies = [] } = useMovieList();
    const { data: favorites = [] } = useFavorites();
    //data alias movies default empty array
+   const { isOpen, closeModal } = useInfoModal();
 
    return (
       <div>
+         <InfoModal visible={isOpen} onClose={closeModal} />
          <Navbar />
          <Billboard />
          <div className='pb-40'>

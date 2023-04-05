@@ -1,11 +1,13 @@
 /* eslint-disable @next/next/no-img-element */
 import { signOut } from 'next-auth/react';
+import useCurrentUser from '../hooks/useCurrentUser';
 
 interface AccountMenuProps {
    visible: boolean;
 }
 
 const AccountMenu = ({ visible }: AccountMenuProps) => {
+   const { data } = useCurrentUser();
    if (!visible) {
       return null;
    }
@@ -19,7 +21,7 @@ const AccountMenu = ({ visible }: AccountMenuProps) => {
                   src='/images/default-red.png'
                   alt=''
                />
-               <p className='text-white text-sm'>Username</p>
+               <p className='text-white text-sm'>{data?.name}</p>
             </div>
             <hr className='bg-gray-600 border-0 h-px my-4' />
             <div
