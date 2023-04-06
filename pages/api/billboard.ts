@@ -14,8 +14,9 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       const randomIndex = Math.floor(Math.random() * movieCount);
 
       const randomMovies = await prismadb.movie.findMany({
-         take: 1,
-         skip: randomIndex,
+         where: {
+            isBillboard: true,
+         },
       });
 
       return res.status(200).json(randomMovies[0]);
