@@ -60,7 +60,7 @@ const Home = () => {
          <InfoModal visible={isOpen} onClose={closeModal} />
          <Navbar />
          <Billboard />
-         <div className='pb-40 px-5 lg:px-0'>
+         <div className='pb-60 px-5 lg:px-0'>
             <div className='md:px-12 mt-[2vw] flex gap-5 lg:gap-20 mb-7'>
                <div className='flex flex-col'>
                   <button

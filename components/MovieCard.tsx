@@ -21,7 +21,7 @@ const MovieCard = ({ data: movie, index }: MovieCardProps) => {
             alt={movie.title}
          />
          <div
-            className={`lg:opacity-0 lg:absolute lg:top-0 transition duration-200 lg:z-10 visible w-full lg:scale-0 lg:group-hover:scale-110 lg:group-hover:-translate-y-[6vw] ${
+            className={`lg:opacity-0 lg:absolute lg:top-0 transition duration-200 lg:z-10 visible w-full lg:scale-0 lg:group-hover:scale-110 lg:group-hover:-translate-y-[2vw] ${
                index === 3
                   ? 'lg:group-hover:-translate-x-[2vw]'
                   : 'lg:group-hover:translate-x-[2vw]'

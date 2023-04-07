@@ -19,20 +19,12 @@ const MobileMenu = ({ showMobileMenu, setShowMobileMenu }: MobileMenuProps) => {
          >
             <AiOutlineClose size={30} />
          </div>
-         <div className='flex flex-col gap-4 text-3xl font-semibold text-white uppercase'>
-            <div className='px-3 gap-3 flex flex-col hover:underline'>Home</div>
-            <div className='px-3 gap-3 flex flex-col hover:underline'>
-               Series
-            </div>
-            <div className='px-3 gap-3 flex flex-col hover:underline'>
-               Films
-            </div>
-            <div className='px-3 gap-3 flex flex-col hover:underline'>
-               New & Popular
-            </div>
-            <div className='px-3 gap-3 flex flex-col hover:underline'>
-               My List
-            </div>
+         <div className='flex flex-col gap-8 text-3xl font-semibold text-white uppercase'>
+            <div className='px-3 gap-3 flex flex-col'>Home</div>
+            <div className='px-3 gap-3 flex flex-col'>Series</div>
+            <div className='px-3 gap-3 flex flex-col'>Films</div>
+            <div className='px-3 gap-3 flex flex-col'>New & Popular</div>
+            <div className='px-3 gap-3 flex flex-col'>My List</div>
          </div>
       </div>
    );
