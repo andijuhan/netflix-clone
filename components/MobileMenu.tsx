@@ -1,30 +1,36 @@
-import NavbarItem from './NavbarItem';
+import { Dispatch, SetStateAction } from 'react';
+import { AiOutlineClose } from 'react-icons/ai';
 
 interface MobileMenuProps {
-   visible: boolean;
+   showMobileMenu: boolean;
+   setShowMobileMenu: Dispatch<SetStateAction<boolean>>;
 }
 
-const MobileMenu = ({ visible }: MobileMenuProps) => {
-   if (!visible) {
+const MobileMenu = ({ showMobileMenu, setShowMobileMenu }: MobileMenuProps) => {
+   if (!showMobileMenu) {
       return null;
    }
 
    return (
-      <div className='bg-black w-56 absolute top-8 left-0  py-5 flex flex-col border-2 border-gray-800'>
-         <div className='flex flex-col gap-4'>
-            <div className='px-3 text-center gap-3 flex flex-col text-white hover:underline'>
-               Home
-            </div>
-            <div className='px-3 text-center gap-3 flex flex-col text-white hover:underline'>
+      <div className='bg-black fixed inset-0 justify-center items-center py-5 flex flex-col border-2 z-50'>
+         <div
+            onClick={() => setShowMobileMenu(false)}
+            className='absolute top-1 right-1 h-10 w-10 rounded-full bg-neutral-800 flex justify-center items-center text-neutral-400 cursor-pointer'
+         >
+            <AiOutlineClose size={30} />
+         </div>
+         <div className='flex flex-col gap-4 text-3xl font-semibold text-white uppercase'>
+            <div className='px-3 gap-3 flex flex-col hover:underline'>Home</div>
+            <div className='px-3 gap-3 flex flex-col hover:underline'>
                Series
             </div>
-            <div className='px-3 text-center gap-3 flex flex-col text-white hover:underline'>
+            <div className='px-3 gap-3 flex flex-col hover:underline'>
                Films
             </div>
-            <div className='px-3 text-center gap-3 flex flex-col text-white hover:underline'>
+            <div className='px-3 gap-3 flex flex-col hover:underline'>
                New & Popular
             </div>
-            <div className='px-3 text-center gap-3 flex flex-col text-white hover:underline'>
+            <div className='px-3 gap-3 flex flex-col hover:underline'>
                My List
             </div>
          </div>

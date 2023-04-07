@@ -1,6 +1,7 @@
 import { BsChevronDown } from 'react-icons/bs';
 import { BsSearch } from 'react-icons/bs';
 import { BsBell } from 'react-icons/bs';
+import { GiHamburgerMenu } from 'react-icons/gi';
 import NavbarItem from './NavbarItem';
 import MobileMenu from './MobileMenu';
 import { useCallback, useEffect, useState } from 'react';
@@ -38,10 +39,10 @@ const Navbar = () => {
       <nav className='w-full fixed z-40'>
          <div
             className={`px-4 md:px-16 py-6 flex items-center transition duration-500 ${
-               showBackground ? 'bg-black opacity-90' : ''
+               showBackground ? 'bg-black bg-opacity-95' : ''
             }`}
          >
-            <img className='h-4 lg:h-7' src='images/logo.png' alt='' />
+            <img className='h-7' src='images/logo.png' alt='' />
             <div className='ml-8 gap-7 hidden lg:flex'>
                <NavbarItem label='Home' />
                <NavbarItem label='Series' />
@@ -51,17 +52,18 @@ const Navbar = () => {
             </div>
             <div
                onClick={toggleMobileMenu}
-               className='lg:hidden flex items-center gap-2 ml-8  cursor-pointer relative'
+               className='lg:hidden flex items-center ml-auto cursor-pointer'
             >
-               <p className='text-white text-sm'>Browser</p>
-               <BsChevronDown
-                  className={`text-white transition duration-300 ${
-                     showMobileMenu ? 'rotate-180' : 'rotate-0'
-                  }`}
+               <GiHamburgerMenu
+                  className='text-white transition duration-300'
+                  size={30}
                />
-               <MobileMenu visible={showMobileMenu} />
+               <MobileMenu
+                  showMobileMenu={showMobileMenu}
+                  setShowMobileMenu={setShowMobileMenu}
+               />
             </div>
-            <div className='flex flex-row ml-auto gap-7 items-center'>
+            <div className='hidden lg:flex flex-row ml-auto gap-7 items-center'>
                <div className='text-gray-200 hover:text-gray-300 cursor-pointer transition drop-shadow-xl'>
                   <BsSearch />
                </div>

@@ -62,17 +62,17 @@ const Watch = () => {
          >
             <AiOutlineArrowLeft
                onClick={() => router.push('/')}
-               className='text-white cursor-pointer'
+               className='text-white cursor-pointer hover:scale-110 transition duration-300'
                size={40}
             />
-            <p className='text-white text-xl md:text-3xl font-bold'>
+            <p className='text-white lg:text-xl md:text-3xl font-bold'>
                <span className='font-light'>Watching : </span>
                {data?.title}
             </p>
          </nav>
-         <div className='relative mx-auto h-full w-full flex justify-center items-center'>
+         <div className='relative mx-auto lg:h-full w-full flex justify-center lg:items-center'>
             <video
-               className={`w-[85%] ${showInfo && 'brightness-[0.3]'} ${
+               className={`lg:w-[85%] ${showInfo && 'brightness-[0.3]'} ${
                   showList && 'brightness-[0.3]'
                } transition duration-300`}
                autoPlay
@@ -80,7 +80,7 @@ const Watch = () => {
                src={data?.videoUrl}
             ></video>
             {showList ? (
-               <div className='absolute left-[7vw] bottom-[8vw] w-[85%] z-40'>
+               <div className='absolute left-[7vw] bottom-[20%] w-[85%] z-40'>
                   <MovieList data={allMovies} />
                </div>
             ) : null}
@@ -114,8 +114,8 @@ const Watch = () => {
             </div>
          </div>
 
-         <div className='absolute hidden lg:left-[2vw] lg:top-[7vw] lg:flex lg:flex-col items-center gap-6 transition duration-500 z-40'>
-            <div className='flex flex-col gap-1 text-sm items-center justify-center'>
+         <div className='absolute hidden left-[2vw] top-[25%] lg:flex flex-col items-center gap-6 transition duration-500 z-40'>
+            <div className='flex flex-col gap-1 text-sm items-center justify-center hover:scale-110 transition duration-300'>
                <div
                   onClick={toggleShowInfo}
                   className='text-white border-2 cursor-pointer border-white rounded-full w-[65px] h-[65px] flex justify-center items-center drop-shadow-2xl'
@@ -124,20 +124,20 @@ const Watch = () => {
                </div>
                <p className='text-white'>Info</p>
             </div>
-            <div className='flex flex-col gap-1 text-sm items-center justify-center drop-shadow-2xl'>
+            <div className='flex flex-col gap-1 text-sm items-center justify-center drop-shadow-2xl hover:scale-110 transition duration-300'>
                <FavoriteButton
                   movieId={data?.id}
                   size='lg:w-[60px] lg:h-[60px]'
                />
                <p className='text-white'>My List</p>
             </div>
-            <div className='flex flex-col gap-1 text-sm items-center justify-center'>
+            <div className='flex flex-col gap-1 text-sm items-center justify-center hover:scale-110 transition duration-300'>
                <div className='text-white border-2 cursor-pointer border-white rounded-full w-[58px] h-[58px] flex justify-center items-center drop-shadow-2xl'>
                   <RiShareForwardFill size={25} />
                </div>
                <p className='text-white'>Share</p>
             </div>
-            <div className='flex flex-col gap-1 text-sm items-center justify-center'>
+            <div className='flex flex-col gap-1 text-sm items-center justify-center hover:scale-110 transition duration-300'>
                <div
                   onClick={toggleShowList}
                   className='text-white border-2 cursor-pointer border-white rounded-full w-[58px] h-[58px] flex justify-center items-center drop-shadow-2xl'
@@ -147,8 +147,28 @@ const Watch = () => {
                <p className='text-white'>More</p>
             </div>
          </div>
-         <div className='lg:hidden w-full mt-7 px-7 flex'>
-            <FavoriteButton movieId={data?.id} />
+         <div className='lg:hidden mt-7 px-7 flex gap-3 w-full items-center'>
+            <div className='flex'>
+               <FavoriteButton movieId={data?.id} />
+            </div>
+            <div className='text-white border-2 cursor-pointer border-white rounded-full w-[40px] h-[40px] flex justify-center items-center'>
+               <RiShareForwardFill size={25} />
+            </div>
+         </div>
+
+         <div className='lg:hidden w-full'>
+            <div className='py-5 px-7'>
+               <p className='text-green-500 font-semibold text-xl mb-2'>
+                  {data?.title}{' '}
+                  <span className='text-white text-base'>(2023)</span>
+               </p>
+               <p className='text-white text-lg'>{data?.duration}</p>
+               <p className='text-white text-lg mb-2'>{data?.genre}</p>
+               <p className='text-white'>{data?.description}</p>
+            </div>
+            <div className='px-4 pb-20 mt-14'>
+               <MovieList data={allMovies} />
+            </div>
          </div>
       </div>
    );

@@ -1,5 +1,6 @@
+/* eslint-disable @next/next/no-img-element */
 import { BiInfoCircle } from 'react-icons/bi';
-import { BiDownArrow } from 'react-icons/bi';
+import { FiChevronDown } from 'react-icons/fi';
 import useBillboard from '../hooks/useBillboard';
 import PlayButton from './PlayButton';
 import useInfoModal from '../hooks/useInfoModal';
@@ -26,18 +27,18 @@ const Billboard = () => {
             ></video>
          </div>
 
-         <div className='absolute top-[70%] md:top-[40%] ml-4 md:ml-16'>
-            <p className='text-white text-2xl md:text-5xl h-full w-[50%] lg:text-7xl drop-shadow-xl font-medium'>
+         <div className='absolute lg:bottom-[20%] bottom-[10%] ml-4 md:ml-16'>
+            <p className='text-white text-4xl md:text-5xl h-full lg:w-[50%] lg:text-7xl drop-shadow-xl font-medium'>
                {data?.title}
             </p>
-            <p className='text-white text-md md:text-lg mt-3 md:mt-8 w-[90%] md:w-[80%] lg:w-[50%] drop-shadow-xl'>
+            <p className='text-white md:text-lg mt-3 md:mt-8 w-[90%] md:w-[80%] lg:w-[50%] drop-shadow-xl opacity-80'>
                {data?.description}
             </p>
-            <div className='flex items-center mt-3 md:mt-4 lg:mt-8 gap-3'>
+            <div className='flex items-center mt-4 lg:mt-8 gap-3'>
                <PlayButton movieId={data?.id} />
                <button
                   onClick={handleOpenModal}
-                  className='bg-white text-white bg-opacity-40 rounded-md py-2 px-2 md:px-4 w-auto text-xs lg:text-lg font-semibold hover:bg-opacity-30 flex items-center transition'
+                  className='bg-white text-white bg-opacity-40 rounded-md py-2 px-4 w-auto text-lg font-semibold hover:bg-opacity-30 flex items-center transition'
                >
                   <BiInfoCircle className='mr-1' />
                   More Info
@@ -45,7 +46,7 @@ const Billboard = () => {
             </div>
          </div>
          <div className='absolute left-1/2 transform -translate-x-1/2 bottom-7'>
-            <BiDownArrow
+            <FiChevronDown
                className='text-white opacity-30 animate-pulse'
                size={40}
             />

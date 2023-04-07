@@ -11,9 +11,9 @@ const MovieList = ({ data }: MovieListProps) => {
    }
 
    return (
-      <div className='px-4 md:px-12 mt-[2vw] space-y-8'>
+      <div className='md:px-12 mt-[2vw] lg:space-y-8'>
          <div>
-            <div className='grid grid-cols-4 gap-3'>
+            <div className='grid grid-cols-1 lg:grid-cols-4 gap-3'>
                {data.map((movie, index) => (
                   <MovieCard key={movie.id} index={index} data={movie} />
                ))}

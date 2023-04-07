@@ -12,7 +12,7 @@ interface FavoriteButtonProps {
 
 const FavoriteButton = ({
    movieId,
-   size = 'lg:w-10 lg:h-10',
+   size = 'w-10 h-10',
 }: FavoriteButtonProps) => {
    const { mutate: mutateFoforites } = useFavorites();
    const { data: currentUser, mutate } = useCurrentUser();
