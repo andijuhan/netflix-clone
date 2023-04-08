@@ -3,9 +3,10 @@ import MovieCard from './MovieCard';
 
 interface MovieListProps {
    data: Record<string, any>[];
+   showMovieList: boolean;
 }
 
-const MovieList = ({ data }: MovieListProps) => {
+const MovieList = ({ data, showMovieList }: MovieListProps) => {
    if (isEmpty(data)) {
       return null;
    }
@@ -15,7 +16,12 @@ const MovieList = ({ data }: MovieListProps) => {
          <div>
             <div className='grid grid-cols-1 lg:grid-cols-4 gap-3'>
                {data.map((movie, index) => (
-                  <MovieCard key={movie.id} index={index} data={movie} />
+                  <MovieCard
+                     key={movie.id}
+                     index={index}
+                     data={movie}
+                     showCard={showMovieList}
+                  />
                ))}
             </div>
          </div>

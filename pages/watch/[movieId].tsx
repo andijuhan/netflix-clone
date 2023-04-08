@@ -79,15 +79,13 @@ const Watch = () => {
                controls
                src={data?.videoUrl}
             ></video>
-            {showList ? (
-               <div className='absolute left-[7vw] bottom-[20%] w-[85%] z-40'>
-                  <MovieList data={allMovies} />
-               </div>
-            ) : null}
+            <div className='absolute left-[7vw] bottom-[20%] w-[85%] z-40'>
+               <MovieList data={allMovies} showMovieList={showList} />
+            </div>
             <div
                className={`hidden lg:block absolute ${
                   showInfo ? 'opacity-100' : 'opacity-0'
-               } h-auto w-[30%] left-[9vw] top-[1] bg-zinc-900 shadow-2xl rounded-lg transition duration-500 ease-in-out z-30`}
+               } h-auto w-[30%] left-[9vw] top-[1] bg-zinc-900 shadow-2xl rounded-lg transition duration-300 ease-in-out z-30`}
             >
                <div className='w-full relative'>
                   <div className='w-8 h-8 bg-black bg-opacity-80 rounded-full flex justify-center items-center absolute top-4 right-5 cursor-pointer text-white p-2'>
@@ -167,7 +165,7 @@ const Watch = () => {
                <p className='text-white'>{data?.description}</p>
             </div>
             <div className='px-4 pb-20 mt-14'>
-               <MovieList data={allMovies} />
+               <MovieList data={allMovies} showMovieList={true} />
             </div>
          </div>
       </div>
