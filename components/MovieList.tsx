@@ -1,5 +1,6 @@
-import { isEmpty } from 'lodash';
+import { isEmpty, shuffle } from 'lodash';
 import MovieCard from './MovieCard';
+import { useState } from 'react';
 
 interface MovieListProps {
    data: Record<string, any>[];

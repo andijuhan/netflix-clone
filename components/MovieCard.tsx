@@ -29,12 +29,6 @@ const cardDetailVarian = {
       x: 0,
       y: 0,
    },
-   hover: {
-      opacity: 1,
-      scale: 1.1,
-      x: 20,
-      y: -40,
-   },
    anim: {
       opacity: 1,
       scale: 1,
@@ -131,7 +125,12 @@ const MovieCard = ({ data: movie, index, showCard }: MovieCardProps) => {
                <motion.div
                   className={`lg:absolute lg:top-0 lg:z-10 w-full`}
                   initial='rest'
-                  whileHover='hover'
+                  whileHover={{
+                     opacity: 1,
+                     scale: 1.1,
+                     x: index === 3 ? -30 : 30,
+                     y: -40,
+                  }}
                   animate={windowSize[0] >= 1024 ? undefined : 'anim'}
                   variants={cardDetailVarian}
                   transition={{

@@ -73,7 +73,7 @@ const Watch = () => {
          <div className='relative mx-auto lg:h-full w-full flex justify-center lg:items-center'>
             <video
                className={`lg:w-[85%] ${showInfo && 'brightness-[0.3]'} ${
-                  showList && 'brightness-[0.3]'
+                  showList && 'brightness-[0.2]'
                } transition duration-300`}
                autoPlay
                controls
@@ -85,7 +85,7 @@ const Watch = () => {
             <div
                className={`hidden lg:block absolute ${
                   showInfo ? 'opacity-100' : 'opacity-0'
-               } h-auto w-[30%] left-[9vw] top-[1] bg-zinc-900 shadow-2xl rounded-lg transition duration-300 ease-in-out z-30`}
+               } h-[80%] w-[30%] left-[9vw] top-[1] bg-zinc-900 shadow-2xl rounded-md transition duration-300 ease-in-out z-30 overflow-auto`}
             >
                <div className='w-full relative'>
                   <div className='w-8 h-8 bg-black bg-opacity-80 rounded-full flex justify-center items-center absolute top-4 right-5 cursor-pointer text-white p-2'>
@@ -95,18 +95,20 @@ const Watch = () => {
                      />
                   </div>
                   <img
-                     className='w-full object-cover rounded-tl-lg rounded-tr-lg'
+                     className='w-full object-cover rounded-tl-lg rounded-tr-md'
                      src={data?.thumbnailUrl}
                      alt=''
                   />
-                  <div className='py-5 px-4'>
-                     <p className='text-green-500 font-semibold text-xl mb-2'>
+                  <div className='py-5 px-6'>
+                     <p className='text-green-500 font-semibold text-xl mb-4'>
                         {data?.title}{' '}
                         <span className='text-white text-base'>(2023)</span>
                      </p>
-                     <p className='text-white text-lg'>{data?.duration}</p>
-                     <p className='text-white text-lg mb-2'>{data?.genre}</p>
-                     <p className='text-white'>{data?.description}</p>
+                     <p className='text-white'>{data?.duration}</p>
+                     <p className='text-white mb-4'>{data?.genre}</p>
+                     <p className='text-white text-lg opacity-70'>
+                        {data?.description}
+                     </p>
                   </div>
                </div>
             </div>
