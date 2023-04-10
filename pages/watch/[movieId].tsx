@@ -1,8 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
 import { useRouter } from 'next/router';
 import useMovie from '../../hooks/useMovie';
-import { AiOutlineArrowLeft } from 'react-icons/ai';
-import { BsInfoLg, BsChevronRight } from 'react-icons/bs';
+import { AiOutlineArrowLeft, AiOutlineHome } from 'react-icons/ai';
+import { BsInfoLg, BsChevronRight, BsSearch } from 'react-icons/bs';
 import { AiOutlineClose } from 'react-icons/ai';
 import { RiShareForwardFill } from 'react-icons/ri';
 import { useCallback, useEffect, useState } from 'react';
@@ -26,8 +26,10 @@ const Watch = () => {
    const { isOpen, closeModal } = useInfoModal();
 
    useEffect(() => {
+      setShowInfo(true);
       setTimeout(() => {
          setShowNav(false);
+         setShowInfo(false);
       }, 10000);
    }, []);
 
@@ -57,12 +59,17 @@ const Watch = () => {
       >
          <InfoModal visible={isOpen} onClose={closeModal} />
          <nav
-            className={`lg:fixed w-full p-4 z-10 ${
-               showNav ? 'lg:opacity-100' : 'lg:bg-opacity-0'
-            } flex items-center gap-2 bg-black bg-opacity-80 transition duration-500`}
+            className={`lg:fixed w-full p-4 z-30 ${
+               showNav ? 'lg:bg-opacity-100' : 'lg:bg-opacity-10'
+            } flex items-center gap-5 bg-black transition duration-500 border-b-2 border-neutral-700`}
          >
-            <AiOutlineArrowLeft
+            <AiOutlineHome
                onClick={() => router.push('/')}
+               className='text-white cursor-pointer hover:scale-110 transition duration-300'
+               size={35}
+            />
+            <AiOutlineArrowLeft
+               onClick={() => router.back()}
                className='text-white cursor-pointer hover:scale-110 transition duration-300'
                size={40}
             />
@@ -70,6 +77,10 @@ const Watch = () => {
                <span className='font-light'>Watching : </span>
                {data?.title}
             </p>
+            <BsSearch
+               className='hidden lg:block text-white cursor-pointer ml-auto mr-8 hover:scale-110 transition duration-300'
+               size={35}
+            />
          </nav>
          <div className='relative mx-auto lg:h-full w-full flex justify-center lg:items-center'>
             <video
@@ -78,35 +89,54 @@ const Watch = () => {
                } transition duration-300`}
                autoPlay
                controls
+               onEnded={() => {
+                  setShowList(true);
+               }}
                src={data?.videoUrl}
             ></video>
             <div className='absolute left-[7vw] bottom-[20%] w-[85%] z-40 flex flex-col justify-center items-center'>
-               {showList ? (
-                  <div className='text-5xl text-white font-semibold opacity-90'>
-                     Recomended Movies
-                  </div>
-               ) : null}
-
-               <MovieList data={allMovies} showMovieList={showList} />
+               <AnimatePresence mode='wait'>
+                  {showList ? (
+                     <>
+                        <motion.div
+                           initial={{ opacity: 0 }}
+                           animate={{ opacity: 1 }}
+                           exit={{ opacity: 0 }}
+                           transition={{
+                              type: 'spring',
+                              duration: 1,
+                           }}
+                           className='text-4xl text-white font-semibold opacity-90'
+                        >
+                           Recomended Movies
+                        </motion.div>
+                        <MovieList data={allMovies} />
+                     </>
+                  ) : null}
+               </AnimatePresence>
             </div>
             <AnimatePresence mode='wait'>
                {showInfo ? (
                   <motion.div
-                     initial={{ opacity: 0, scale: 0.7 }}
-                     animate={{ opacity: 1, scale: 1 }}
-                     exit={{ opacity: 0, scale: 0.7 }}
-                     transition={{ type: 'spring', duration: 0.7, bounce: 0.4 }}
-                     className='hidden lg:block absolute h-[70%] w-[30%] left-[9vw] top-[1] bg-zinc-900 bg-opacity-80 shadow-2xl rounded-md z-30 overflow-auto'
+                     initial={{ opacity: 0, x: '100vw' }}
+                     animate={{ opacity: 1, x: '3vw' }}
+                     exit={{ opacity: 0, x: '100vw' }}
+                     transition={{
+                        type: 'spring',
+                        duration: 1,
+                        bounce: 0.2,
+                     }}
+                     className='hidden lg:block absolute h-full w-[30%] right-0 top-[1] bg-zinc-900 shadow-2xl z-30 overflow-auto'
                   >
                      <div className='w-full relative'>
-                        <div className='w-8 h-8 bg-black bg-opacity-80 rounded-full flex justify-center items-center absolute top-4 right-5 cursor-pointer text-white p-2'>
+                        <div className='w-8 h-8 bg-black bg-opacity-80 rounded-full flex justify-center items-center absolute top-4 left-5 cursor-pointer text-white p-2'>
                            <AiOutlineClose
                               onClick={() => setShowInfo(false)}
                               className=''
                            />
                         </div>
                         <img
-                           className='w-full object-cover rounded-tl-lg rounded-tr-md'
+                           className='w-full object-cover rounded-tr-md'
                            src={data?.thumbnailUrl}
                            alt=''
                         />
@@ -119,7 +149,7 @@ const Watch = () => {
                            </p>
                            <p className='text-white'>{data?.duration}</p>
                            <p className='text-yellow-500 mb-4'>{data?.genre}</p>
-                           <p className='text-white text-lg opacity-70'>
+                           <p className='text-white text-lg opacity-70 pr-12'>
                               {data?.description}
                            </p>
                         </div>
@@ -176,14 +206,14 @@ const Watch = () => {
             <div className='py-5 px-7'>
                <p className='text-green-500 font-semibold text-xl mb-2'>
                   {data?.title}{' '}
-                  <span className='text-white text-base'>(2023)</span>
+                  <span className='text-neutral-500 text-base'>(2023)</span>
                </p>
                <p className='text-white text-lg'>{data?.duration}</p>
-               <p className='text-white text-lg mb-2'>{data?.genre}</p>
+               <p className='text-yellow-500 text-lg mb-2'>{data?.genre}</p>
                <p className='text-white'>{data?.description}</p>
             </div>
             <div className='px-4 pb-20 mt-14'>
-               <MovieList data={allMovies} showMovieList={true} />
+               <MovieList data={allMovies} />
             </div>
          </div>
       </div>

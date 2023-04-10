@@ -45,10 +45,9 @@ const Navbar = () => {
             <img className='h-7' src='images/logo.png' alt='' />
             <div className='ml-8 gap-7 hidden lg:flex'>
                <NavbarItem label='Home' />
-               <NavbarItem label='Series' />
-               <NavbarItem label='Film' />
-               <NavbarItem label='New & Popular' />
-               <NavbarItem label='My List' />
+               <NavbarItem label='Movies' />
+               <NavbarItem label='TV Shows' />
+               <NavbarItem label='Blog' />
             </div>
             <div
                onClick={toggleMobileMenu}

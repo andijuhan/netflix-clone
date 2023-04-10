@@ -13,7 +13,7 @@ const AccountMenu = ({ visible }: AccountMenuProps) => {
    }
 
    return (
-      <div className='bg-black w-56 absolute top-14  right-0 py-5 flex-col border-2 border-gray-900 rounded-md'>
+      <div className='bg-black w-56 absolute top-14 bg-opacity-80 border border-gray-600 right-0 py-5 flex-col shadow-xl rounded-md'>
          <div className='flex flex-col gap-3'>
             <div className='px-3 flex flex-row gap-3 items-center w-full'>
                <img
