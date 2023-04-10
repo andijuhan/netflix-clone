@@ -16,6 +16,7 @@ const cardVariant = {
    anim: {
       opacity: 1,
       scale: 1,
+      zIndex: -1,
    },
    hover: {
       opacity: 0,
@@ -123,13 +124,14 @@ const MovieCard = ({ data: movie, index, showCard }: MovieCardProps) => {
                   }}
                />
                <motion.div
-                  className={`lg:absolute lg:top-0 lg:z-10 w-full`}
+                  className={`lg:absolute lg:top-0 lg:z-10 w-full lg:hidden group-hover:block`}
                   initial='rest'
                   whileHover={{
                      opacity: 1,
                      scale: 1.1,
-                     x: index === 3 ? -30 : 30,
-                     y: -40,
+                     x: index === (3 || 7) ? -30 : 30,
+                     y: -60,
+                     zIndex: 40,
                   }}
                   animate={windowSize[0] >= 1024 ? undefined : 'anim'}
                   variants={cardDetailVarian}
@@ -137,7 +139,7 @@ const MovieCard = ({ data: movie, index, showCard }: MovieCardProps) => {
                      type: 'spring',
                      duration: 0.5,
                      delay: windowSize[0] >= 1024 ? 0 : 0.2 * index,
-                     ease: 'easeInOut',
+                     bounce: 0.4,
                   }}
                >
                   <img
@@ -153,13 +155,7 @@ const MovieCard = ({ data: movie, index, showCard }: MovieCardProps) => {
                         >
                            <BsFillPlayFill size={30} />
                         </div>
-                        <FavoriteButton movieId={movie?.id} />
-                        <div
-                           onClick={() => openModal(movie.id)}
-                           className='hidden cursor-pointer ml-auto w-10 h-10 border-white border-2 rounded-full lg:flex justify-center items-center transition hover:border-neutral-300'
-                        >
-                           <BsChevronDown className='text-white' />
-                        </div>
+                        <FavoriteButton movieId={movie?.id} type='card' />
                      </div>
                      <p className='text-green-400 font-semibold text-lg mt-4'>
                         {movie.title}

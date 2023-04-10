@@ -6,6 +6,7 @@ import PlayButton from './PlayButton';
 import useInfoModal from '../hooks/useInfoModal';
 import { useCallback } from 'react';
 import { motion } from 'framer-motion';
+import FavoriteButton from './FavoriteButton';
 
 const Billboard = () => {
    const { data, isLoading } = useBillboard();
@@ -75,13 +76,7 @@ const Billboard = () => {
                      className='flex items-center mt-4 lg:mt-8 gap-3'
                   >
                      <PlayButton movieId={data?.id} />
-                     <button
-                        onClick={handleOpenModal}
-                        className='bg-white text-white bg-opacity-40 rounded-md py-2 px-4 w-auto text-lg font-semibold hover:bg-opacity-30 flex items-center transition'
-                     >
-                        <BiInfoCircle className='mr-1' />
-                        More Info
-                     </button>
+                     <FavoriteButton movieId={data?.id} type={'billboard'} />
                   </motion.div>
                </div>
                <div className='absolute left-1/2 transform -translate-x-1/2 bottom-7'>

@@ -13,7 +13,7 @@ const MovieList = ({ data, showMovieList }: MovieListProps) => {
    }
 
    return (
-      <div className='md:px-12 mt-[2vw] lg:space-y-8'>
+      <div className='md:px-12 mt-[2vw] lg:space-y-8 min-h-[500px]'>
          <div>
             <div className='grid grid-cols-1 lg:grid-cols-4 gap-3'>
                {data.map((movie, index) => (

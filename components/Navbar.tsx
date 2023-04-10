@@ -1,6 +1,6 @@
 import { BsChevronDown } from 'react-icons/bs';
 import { BsSearch } from 'react-icons/bs';
-import { BsBell } from 'react-icons/bs';
+import { BsBellFill } from 'react-icons/bs';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import NavbarItem from './NavbarItem';
 import MobileMenu from './MobileMenu';
@@ -68,7 +68,7 @@ const Navbar = () => {
                   <BsSearch />
                </div>
                <div className='text-gray-200 hover:text-gray-300 cursor-pointer transition drop-shadow-xl'>
-                  <BsBell />
+                  <BsBellFill />
                </div>
                <div
                   onClick={toggleAccountMenu}

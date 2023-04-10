@@ -4,15 +4,18 @@ import useCurrentUser from '../hooks/useCurrentUser';
 import useFavorites from '../hooks/useFavorites';
 import { AiOutlinePlus } from 'react-icons/ai';
 import { AiOutlineCheck } from 'react-icons/ai';
+import { BiInfoCircle } from 'react-icons/bi';
 
 interface FavoriteButtonProps {
    movieId: string;
    size?: string;
+   type: 'card' | 'billboard';
 }
 
 const FavoriteButton = ({
    movieId,
    size = 'w-10 h-10',
+   type,
 }: FavoriteButtonProps) => {
    const { mutate: mutateFoforites } = useFavorites();
    const { data: currentUser, mutate } = useCurrentUser();
@@ -45,12 +48,24 @@ const FavoriteButton = ({
    const Icon = isFavorite ? AiOutlineCheck : AiOutlinePlus;
 
    return (
-      <div
-         onClick={toggleFavorites}
-         className={`cursor-pointer ${size} border-2 text-white border-white rounded-full flex justify-center items-center transition hover:text-neutral-100 hover:border-neutral-100`}
-      >
-         <Icon size={25} />
-      </div>
+      <>
+         {type === 'card' ? (
+            <div
+               onClick={toggleFavorites}
+               className={`cursor-pointer ${size} border-2 text-white border-white rounded-full flex justify-center items-center transition hover:text-neutral-100 hover:border-neutral-100`}
+            >
+               <Icon size={25} />
+            </div>
+         ) : (
+            <div
+               onClick={toggleFavorites}
+               className='bg-white text-white bg-opacity-40 rounded-md py-2 px-4 w-auto text-lg font-semibold hover:bg-opacity-30 flex gap-2 items-center transition cursor-pointer'
+            >
+               <Icon size={20} />
+               My List
+            </div>
+         )}
+      </>
    );
 };
 
