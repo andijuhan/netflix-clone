@@ -94,7 +94,7 @@ const Watch = () => {
                }}
                src={data?.videoUrl}
             ></video>
-            <div className='absolute left-[7vw] bottom-[20%] w-[85%] z-40 flex flex-col justify-center items-center'>
+            <div className='absolute left-[7vw] bottom-[25%] w-[85%] z-40 flex flex-col justify-center items-center'>
                <AnimatePresence mode='wait'>
                   {showList ? (
                      <>

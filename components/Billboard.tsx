@@ -1,20 +1,12 @@
 /* eslint-disable @next/next/no-img-element */
-import { BiInfoCircle } from 'react-icons/bi';
 import { FiChevronDown } from 'react-icons/fi';
 import useBillboard from '../hooks/useBillboard';
 import PlayButton from './PlayButton';
-import useInfoModal from '../hooks/useInfoModal';
-import { useCallback } from 'react';
 import { motion } from 'framer-motion';
 import FavoriteButton from './FavoriteButton';
 
 const Billboard = () => {
    const { data, isLoading } = useBillboard();
-   const { openModal } = useInfoModal();
-
-   const handleOpenModal = useCallback(() => {
-      openModal(data?.id);
-   }, [openModal, data?.id]);
 
    return (
       <div className='relative lg:h-[50.25vw]'>
